@@ -1,0 +1,6 @@
+framework module Pods_Bindable_Tests {
+  umbrella header "Pods-Bindable_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
