@@ -22,7 +22,9 @@ pod "Bindable"
 
 ## Author
 
-openfryer, leif@pnegames.com
+Leif Meyer, leif@incipia.co
+
+Gregory Klein, gregory@incipia.co
 
 ## License
 
