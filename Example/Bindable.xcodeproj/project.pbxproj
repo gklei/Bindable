@@ -13,6 +13,13 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		E9C1ED981EBD1763003A80A0 /* KVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1ED7F1EBD0BC6003A80A0 /* KVTests.swift */; };
+		E9C1ED9F1EBD2879003A80A0 /* KVEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1ED7E1EBD0BC6003A80A0 /* KVEvent.swift */; };
+		E9C1EDA01EBD287E003A80A0 /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1ED7D1EBD0BC6003A80A0 /* JSONTests.swift */; };
+		E9C1EDA11EBD2892003A80A0 /* Bindable_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1ED791EBD0BC6003A80A0 /* Bindable_Tests.swift */; };
+		E9C1EDA21EBD2892003A80A0 /* BindableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1ED7A1EBD0BC6003A80A0 /* BindableEvent.swift */; };
+		E9C1EDA31EBD2892003A80A0 /* BindableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1ED7B1EBD0BC6003A80A0 /* BindableTests.swift */; };
+		E9C1EDA41EBD2892003A80A0 /* JSONEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1ED7C1EBD0BC6003A80A0 /* JSONEvent.swift */; };
 		FF528E6BD6311B8023AAFA5A /* Pods_Bindable_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA37A815BFEFD4B8E4C9E8D /* Pods_Bindable_Tests.framework */; };
 		FF9CAA05E8179AA3789001F4 /* Pods_Bindable_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DE491AECD4004EC74BD05E /* Pods_Bindable_Example.framework */; };
 /* End PBXBuildFile section */
@@ -386,7 +393,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9C1ED9F1EBD2879003A80A0 /* KVEvent.swift in Sources */,
+				E9C1EDA21EBD2892003A80A0 /* BindableEvent.swift in Sources */,
+				E9C1ED981EBD1763003A80A0 /* KVTests.swift in Sources */,
+				E9C1EDA11EBD2892003A80A0 /* Bindable_Tests.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				E9C1EDA01EBD287E003A80A0 /* JSONTests.swift in Sources */,
+				E9C1EDA41EBD2892003A80A0 /* JSONEvent.swift in Sources */,
+				E9C1EDA31EBD2892003A80A0 /* BindableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
