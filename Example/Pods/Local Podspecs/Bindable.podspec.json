@@ -1,22 +1,22 @@
 {
   "name": "Bindable",
-  "version": "0.1.0",
-  "summary": "A short description of Bindable.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/openfryer/Bindable",
+  "version": "0.0.1",
+  "summary": "Swift binding and key-value coding functionality",
+  "description": "Binding and key-value coding functionality for Swift.",
+  "homepage": "https://github.com/Incipia/Bindable",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "openfryer": "leif@pnegames.com"
+    "Gregory Klein": "gregory@incipia.co"
   },
   "source": {
-    "git": "https://github.com/openfryer/Bindable.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/Incipia/Bindable.git",
+    "tag": "0.0.1"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "10.0"
   },
   "source_files": "Bindable/Classes/**/*"
 }

@@ -46,6 +46,13 @@
 		96DE491AECD4004EC74BD05E /* Pods_Bindable_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bindable_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39CD46F620DC2AE8744EA12 /* Pods-Bindable_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bindable_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bindable_Tests/Pods-Bindable_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		DCE014D0A81E5B9D6468965F /* Pods-Bindable_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bindable_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bindable_Tests/Pods-Bindable_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		E9C1ED791EBD0BC6003A80A0 /* Bindable_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable_Tests.swift; sourceTree = "<group>"; };
+		E9C1ED7A1EBD0BC6003A80A0 /* BindableEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableEvent.swift; sourceTree = "<group>"; };
+		E9C1ED7B1EBD0BC6003A80A0 /* BindableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableTests.swift; sourceTree = "<group>"; };
+		E9C1ED7C1EBD0BC6003A80A0 /* JSONEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONEvent.swift; sourceTree = "<group>"; };
+		E9C1ED7D1EBD0BC6003A80A0 /* JSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
+		E9C1ED7E1EBD0BC6003A80A0 /* KVEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVEvent.swift; sourceTree = "<group>"; };
+		E9C1ED7F1EBD0BC6003A80A0 /* KVTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVTests.swift; sourceTree = "<group>"; };
 		FAA2B8925631862E34D98AEE /* Bindable.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Bindable.podspec; path = ../Bindable.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +142,13 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E9C1ED791EBD0BC6003A80A0 /* Bindable_Tests.swift */,
+				E9C1ED7A1EBD0BC6003A80A0 /* BindableEvent.swift */,
+				E9C1ED7B1EBD0BC6003A80A0 /* BindableTests.swift */,
+				E9C1ED7C1EBD0BC6003A80A0 /* JSONEvent.swift */,
+				E9C1ED7D1EBD0BC6003A80A0 /* JSONTests.swift */,
+				E9C1ED7E1EBD0BC6003A80A0 /* KVEvent.swift */,
+				E9C1ED7F1EBD0BC6003A80A0 /* KVTests.swift */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -530,7 +544,10 @@
 			baseConfigurationReference = DCE014D0A81E5B9D6468965F /* Pods-Bindable_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 49BYD5B64K;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -549,7 +566,10 @@
 			baseConfigurationReference = C39CD46F620DC2AE8744EA12 /* Pods-Bindable_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 49BYD5B64K;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

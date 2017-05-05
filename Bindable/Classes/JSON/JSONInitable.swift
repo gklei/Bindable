@@ -17,7 +17,7 @@ public protocol JSONInitable {
    init?(json: Any) throws
 }
 
-extension JSONInitable {
+public extension JSONInitable {
    static func jsonTypeError(value: Any) -> JSONError { return .invalidType(selfType: "\(Self.self)", valueType: "\(type(of: value))") }
    static func jsonValueError(value: Any) -> JSONError { return .invalidValue(selfType: "\(Self.self)", value: "\(value)") }
 }
