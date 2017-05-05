@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C43EBFB08AAA3F78F7B3A6F56B8AB0839773E1B1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "EEDD4F8F46EBC6FF2677CC2458CA347598E50C6C" : 9223372036854775807,
+    "C43EBFB08AAA3F78F7B3A6F56B8AB0839773E1B1" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3DCEDAF8-E8BE-4F0D-814C-4D6501A9B3C4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "EEDD4F8F46EBC6FF2677CC2458CA347598E50C6C" : "..",
+    "C43EBFB08AAA3F78F7B3A6F56B8AB0839773E1B1" : "Bindable\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Bindable",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Example\/Bindable.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Incipia\/Bindable.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C43EBFB08AAA3F78F7B3A6F56B8AB0839773E1B1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:GigSalad\/gigsalad-app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EEDD4F8F46EBC6FF2677CC2458CA347598E50C6C"
+    }
+  ]
+}
