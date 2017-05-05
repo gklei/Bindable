@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'Bindable_Example' do
+  pod 'Bindable', :path => '../'
+
+  target 'Bindable_Tests' do
+    inherit! :search_paths
+
+    pod 'Quick', '~> 1.0.0'
+  pod 'Nimble', '~> 5.1.1'
+  end
+end
