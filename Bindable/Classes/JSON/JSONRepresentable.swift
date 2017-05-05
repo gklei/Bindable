@@ -1,5 +1,5 @@
 //
-//  JSONRepresentable.swift
+//  IncJSONRepresentable.swift
 //  GigSalad
 //
 //  Created by Leif Meyer on 2/24/17.
@@ -8,20 +8,20 @@
 
 import Foundation
 
-public protocol JSONRepresentable {
+public protocol IncJSONRepresentable {
    var jsonRepresentation: Any? { get }
 }
 
-public protocol KVJSONRepresentable: JSONRepresentable, KVCompliance {
+public protocol IncKVJSONRepresentable: IncJSONRepresentable, IncKVCompliance {
    static var jsonKeys: [Key] { get }
 }
 
-public extension KVJSONRepresentable {
+public extension IncKVJSONRepresentable {
    var jsonRepresentation: Any? {
       var json: [String : Any] = [:]
       Self.jsonKeys.forEach {
          let value = self.value(for: $0)
-         if let representableValue = value as? JSONRepresentable {
+         if let representableValue = value as? IncJSONRepresentable {
             json[$0.rawValue] = representableValue.jsonRepresentation
          } else {
             json[$0.rawValue] = value

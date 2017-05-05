@@ -17,7 +17,7 @@ public protocol KVStringCompliance {
    mutating func set(value: Any?, for key: String) throws
 }
 
-public extension KVCompliance {
+public extension IncKVCompliance {
    func value(for key: String) -> Any? {
       guard let key = try? Key(keyString: key) else { return nil }
       return value(for: key)
@@ -29,7 +29,7 @@ public extension KVCompliance {
    }
 }
 
-public extension KVKeyType {
+public extension IncKVKeyType {
    init(keyString: String) throws {
       guard let key = Self.init(rawValue: keyString) else { throw KVStringError.invalidKey(key: "\(Self.self).\(keyString)") }
       self = key

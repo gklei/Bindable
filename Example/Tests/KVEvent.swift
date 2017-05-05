@@ -17,11 +17,11 @@ enum KVEventType: String {
    case type1, type2, type3
 }
 
-enum KVEventKey: String, KVKeyType {
+enum KVEventKey: String, IncKVKeyType {
    case category, type, venueNameOrAddress, venueLegalAddress
 }
 
-class KVEvent: KVCompliance {
+class KVEvent: IncKVCompliance {
    var category: KVEventCategory
    var type: KVEventType?
    var venueNameOrAddress: String

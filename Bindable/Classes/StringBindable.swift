@@ -8,9 +8,9 @@
 
 import Foundation
 
-public protocol KVStringComplianceObject: class, KVStringCompliance {}
+public protocol IncKVStringComplianceClass: class, KVStringCompliance {}
 
-public extension KVStringComplianceObject {
+public extension IncKVStringComplianceClass {
    func value(for key: String) -> Any? {
       let object = self as KVStringCompliance
       return object.value(for: key)
@@ -26,7 +26,7 @@ public struct Binding {
    public let target: StringBindable
    public let targetKey: String
    
-   public init<T: KVKeyType, U: KVKeyType>(key: T, target: StringBindable, targetKey: U) {
+   public init<T: IncKVKeyType, U: IncKVKeyType>(key: T, target: StringBindable, targetKey: U) {
       self.key = key.rawValue
       self.target = target
       self.targetKey = targetKey.rawValue
@@ -39,7 +39,7 @@ public struct Binding {
    }
 }
 
-public protocol StringBindable: class, KVStringComplianceObject {
+public protocol StringBindable: class, IncKVStringComplianceClass {
    func bind(key: String, to target: StringBindable, key targetKey: String) throws
    func bindOneWay(key: String, to target: StringBindable, key targetKey: String) throws
    func unbind(key: String, to target: StringBindable, key targetKey: String)
@@ -99,7 +99,7 @@ public extension Bindable {
 }
 
 public extension Binding {
-   func map<FirstKey: KVKeyType, SecondKey: KVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> Binding? {
+   func map<FirstKey: IncKVKeyType, SecondKey: IncKVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> Binding? {
       guard self.key == first.rawValue else { return nil }
       return Binding(key: second.rawValue, target: target, targetKey: targetKey)
    }

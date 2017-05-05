@@ -12,7 +12,7 @@ public enum BindableError: Error {
    case invalidKey(name: String)
 }
 
-public protocol Bindable: KVCompliance, StringBindable {
+public protocol Bindable: IncKVCompliance, StringBindable {
    static var bindableKeys: [Key] { get }
 
    var bindingBlocks: [Key : [((targetObject: AnyObject, rawTargetKey: String)?, Any?) throws -> Bool?]] { get set }
@@ -111,7 +111,7 @@ public extension Bindable {
    }
 }
 
-public func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
+public func IncIterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
    var i = 0
    return AnyIterator {
       let next = withUnsafePointer(to: &i) {

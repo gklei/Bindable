@@ -9,9 +9,9 @@
 import Foundation
 import Bindable
 
-class JSONEvent: KVEvent, KVJSONInitable, KVJSONRepresentable {}
+class JSONEvent: KVEvent, IncKVJSONInitable, IncKVJSONRepresentable {}
 
-extension KVEventCategory: JSONInitable, JSONRepresentable {
+extension KVEventCategory: IncJSONInitable, IncJSONRepresentable {
    init?(json: Any) throws {
       guard let rawValue = json as? String else { throw KVEventCategory.jsonTypeError(value: json) }
       guard let value = KVEventCategory(rawValue: rawValue) else { throw KVEventCategory.jsonValueError(value: json) }
@@ -22,7 +22,7 @@ extension KVEventCategory: JSONInitable, JSONRepresentable {
    }
 }
 
-extension KVEventType: JSONInitable, JSONRepresentable {
+extension KVEventType: IncJSONInitable, IncJSONRepresentable {
    init?(json: Any) throws {
       guard let rawValue = json as? String else { throw KVEventType.jsonTypeError(value: json) }
       guard let value = KVEventType(rawValue: rawValue) else { throw KVEventType.jsonValueError(value: json) }
@@ -33,7 +33,7 @@ extension KVEventType: JSONInitable, JSONRepresentable {
    }
 }
 
-extension KVEventKey: JSONFactory {
+extension KVEventKey: IncJSONFactory {
    func value(json: Any) throws -> Any? {
       switch self {
       case .category:
