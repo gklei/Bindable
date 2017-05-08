@@ -21,6 +21,12 @@ public extension IncKVStringComplianceClass {
    }
 }
 
+public protocol BindingType {
+   var key: String { get }
+   var target: StringBindable { get }
+   var targetKey: String { get }
+}
+
 public struct Binding {
    public let key: String
    public let target: StringBindable
@@ -38,6 +44,8 @@ public struct Binding {
       self.targetKey = targetKey
    }
 }
+
+extension Binding: BindingType {}
 
 public protocol StringBindable: class, IncKVStringComplianceClass {
    func bind(key: String, to target: StringBindable, key targetKey: String) throws
@@ -95,6 +103,30 @@ public extension Bindable {
    func handleBindingError(_ error: Error, value: Any?, key: String) {
       guard let kvKey = try? Key(keyString: key) else { fatalError("String Binding error: Setting \(value) for \(key) threw \(error)") }
       handleBindingError(error, value: value, key: kvKey)
+   }
+}
+
+public typealias BindingModel = [Binding]
+
+public extension Array where Element: BindingType {
+   func filter<Key: IncKVKeyType>(key: Key) -> [Binding] {
+      let keyString: String = key.rawValue
+      return flatMap {
+         guard $0.key == keyString else { return nil }
+         return $0 as! Binding
+      }
+   }
+   func map<FirstKey: IncKVKeyType, SecondKey: IncKVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> [Binding] {
+      return map {
+         guard $0.key == first.rawValue else { return $0 as! Binding }
+         return Binding(key: second.rawValue, target: $0.target, targetKey: $0.targetKey)
+      }
+   }
+   func flatMap<FirstKey: IncKVKeyType, SecondKey: IncKVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> [Binding] {
+      return flatMap {
+         guard $0.key == first.rawValue else { return nil }
+         return Binding(key: second.rawValue, target: $0.target, targetKey: $0.targetKey)
+      }
    }
 }
 
