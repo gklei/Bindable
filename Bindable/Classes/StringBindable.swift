@@ -28,10 +28,19 @@ public protocol BindingType {
 }
 
 public struct Binding {
+   // MARK: - Public Properties
    public let key: String
    public let target: StringBindable
    public let targetKey: String
    
+   public var targetValue: Any? { return target.value(for: key) }
+   
+   // MARK: - Public
+   public func set(targetValue: Any?) throws {
+      try target.set(value: targetValue, for: key)
+   }
+   
+   // MARK: - Init
    public init<T: IncKVKeyType, U: IncKVKeyType>(key: T, target: StringBindable, targetKey: U) {
       self.key = key.rawValue
       self.target = target
