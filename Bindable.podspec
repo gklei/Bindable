@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Bindable'
-  s.version          = '0.0.1'
+  s.version          = '1.0.0'
   s.summary          = 'Swift binding and key-value coding functionality'
 
 # This description is used to generate tags and improve search results.
