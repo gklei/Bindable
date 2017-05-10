@@ -82,7 +82,7 @@ public extension Bindable {
       if bindableKey == keysBeingSet.first { keysBeingSet = [] }
    }
    
-   func handleBindingError(_ error: Error, value: Any?, key: Key) { fatalError("Binding error: Setting \(value) for \(key) threw \(error)") }
+   func handleBindingError(_ error: Error, value: Any?, key: Key) { fatalError("Binding error: Setting \(String(describing: value)) for \(key) threw \(error)") }
    
    func set(value: Any?, for key: Key) throws {
       try setAsBindable(value: value, for: key)

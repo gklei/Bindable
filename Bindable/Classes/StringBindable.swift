@@ -110,7 +110,7 @@ public extension Bindable {
       bindingBlocks[kvKey] = bindingBlocks[kvKey]?.filter { !(try! $0(match, nil)!) }
    }
    func handleBindingError(_ error: Error, value: Any?, key: String) {
-      guard let kvKey = try? Key(keyString: key) else { fatalError("String Binding error: Setting \(value) for \(key) threw \(error)") }
+      guard let kvKey = try? Key(keyString: key) else { fatalError("String Binding error: Setting \(String(describing: value)) for \(key) threw \(error)") }
       handleBindingError(error, value: value, key: kvKey)
    }
    func targetBinding<Key: IncKVKeyType>(key: Key, targetKey: Self.Key) -> Binding {
@@ -125,7 +125,7 @@ public extension Array where Element: BindingType {
       let keyString: String = key.rawValue
       return flatMap {
          guard $0.key == keyString else { return nil }
-         return $0 as! Binding
+         return $0 as? Binding
       }
    }
    func map<FirstKey: IncKVKeyType, SecondKey: IncKVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> [Binding] {
