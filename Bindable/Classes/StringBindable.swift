@@ -113,6 +113,9 @@ public extension Bindable {
       guard let kvKey = try? Key(keyString: key) else { fatalError("String Binding error: Setting \(value) for \(key) threw \(error)") }
       handleBindingError(error, value: value, key: kvKey)
    }
+   func targetBinding<Key: IncKVKeyType>(key: Key, targetKey: Self.Key) -> Binding {
+      return Binding(key: key, target: self, targetKey: targetKey)
+   }
 }
 
 public typealias BindingModel = [Binding]
