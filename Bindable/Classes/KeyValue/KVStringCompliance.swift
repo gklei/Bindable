@@ -17,6 +17,19 @@ public protocol KVStringCompliance {
    mutating func set(value: Any?, for key: String) throws
 }
 
+public extension KVStringCompliance {
+   // MARK: - Subscripts
+   subscript(key: String) -> Any? {
+      get { return value(for: key) }
+      set { try! set(value: newValue, for: key) }
+   }
+   
+   // MARK: - Type Casting
+   func castValue<T>(for key: String, default defaultValue: T? = nil) -> T? {
+      return value(for: key) as? T ?? defaultValue
+   }
+}
+
 public extension IncKVCompliance {
    func value(for key: String) -> Any? {
       guard let key = try? Key(keyString: key) else { return nil }

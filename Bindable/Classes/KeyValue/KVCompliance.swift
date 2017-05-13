@@ -45,6 +45,19 @@ public protocol IncKVCompliance: KVStringCompliance {
    mutating func set(value: Any?, for key: Key) throws
 }
 
+public extension IncKVCompliance {
+   // MARK: - Subscripts
+   subscript(key: Key) -> Any? {
+      get { return value(for: key) }
+      set { try! set(value: newValue, for: key) }
+   }
+
+   // MARK: - Type Casting
+   func castValue<T>(for key: Key, default defaultValue: T? = nil) -> T? {
+      return value(for: key) as? T ?? defaultValue
+   }
+}
+
 public protocol IncKVComplianceClass: class, IncKVCompliance {
    func set(value: Any?, for key: Key) throws
 }
