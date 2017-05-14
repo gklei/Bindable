@@ -53,7 +53,10 @@ public extension IncKVCompliance {
    }
 
    // MARK: - Type Casting
-   func castValue<T>(for key: Key, default defaultValue: T? = nil) -> T? {
+   func castValue<T>(for key: Key) -> T? {
+      return value(for: key) as? T
+   }
+   func castValue<T>(for key: Key, default defaultValue: T) -> T {
       return value(for: key) as? T ?? defaultValue
    }
 }

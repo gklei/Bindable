@@ -25,7 +25,10 @@ public extension KVStringCompliance {
    }
    
    // MARK: - Type Casting
-   func castValue<T>(for key: String, default defaultValue: T? = nil) -> T? {
+   func castValue<T>(for key: String) -> T? {
+      return value(for: key) as? T
+   }
+   func castValue<T>(for key: String, default defaultValue: T) -> T {
       return value(for: key) as? T ?? defaultValue
    }
 }
