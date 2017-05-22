@@ -1,5 +1,5 @@
 //
-//  KVStringCompliance.swift
+//  IncKVStringCompliance.swift
 //  GigSalad
 //
 //  Created by Leif Meyer on 3/3/17.
@@ -8,16 +8,16 @@
 
 import Foundation
 
-public enum KVStringError: Error {
+public enum IncKVStringError: Error {
    case invalidKey(key: String)
 }
 
-public protocol KVStringCompliance {
+public protocol IncKVStringCompliance {
    func value(for key: String) -> Any?
    mutating func set(value: Any?, for key: String) throws
 }
 
-public extension KVStringCompliance {
+public extension IncKVStringCompliance {
    // MARK: - Subscripts
    subscript(key: String) -> Any? {
       get { return value(for: key) }
@@ -47,7 +47,7 @@ public extension IncKVCompliance {
 
 public extension IncKVKeyType {
    init(keyString: String) throws {
-      guard let key = Self.init(rawValue: keyString) else { throw KVStringError.invalidKey(key: "\(Self.self).\(keyString)") }
+      guard let key = Self.init(rawValue: keyString) else { throw IncKVStringError.invalidKey(key: "\(Self.self).\(keyString)") }
       self = key
    }
 }

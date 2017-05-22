@@ -38,7 +38,7 @@ public enum IncKVError: Error {
    case valueType(key: String, value: String)
 }
 
-public protocol IncKVCompliance: KVStringCompliance {
+public protocol IncKVCompliance: IncKVStringCompliance {
    associatedtype Key: IncKVKeyType
    
    func value(for key: Key) -> Any?
