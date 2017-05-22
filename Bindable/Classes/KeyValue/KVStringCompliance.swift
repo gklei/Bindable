@@ -51,3 +51,7 @@ public extension IncKVKeyType {
       self = key
    }
 }
+
+public protocol IncKVStringComplianceClass: class, IncKVStringCompliance {
+   func set(value: Any?, for key: String) throws
+}

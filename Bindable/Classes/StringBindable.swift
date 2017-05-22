@@ -8,8 +8,6 @@
 
 import Foundation
 
-public protocol IncKVStringComplianceClass: class, IncKVStringCompliance {}
-
 public extension IncKVStringComplianceClass {
    func value(for key: String) -> Any? {
       let object = self as IncKVStringCompliance
