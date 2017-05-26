@@ -45,16 +45,22 @@ public enum IncKVJSONError: Error {
 
 public protocol IncKVJSONInitable: IncJSONInitable, IncKVCompliance {
    static var jsonKeys: [Key] { get }
+   static var jsonPath: [String] { get }
    init()
 }
 
 public extension IncKVJSONInitable {
    static var jsonKeys: [Key] { return Key.all }
+   static var jsonPath: [String] { return [] }
    
    static func kvJSONUnderlyingError(key: Key, error: Error) -> IncKVJSONError { return .underlyingError(selfType: "\(Self.self)", key: key.rawValue, error: error) }
    
    init?(json: Any) throws {
-      guard let dictionary = json as? [String : Any] else { throw Self.jsonTypeError(value: json) }
+      guard var dictionary = json as? [String : Any] else { throw Self.jsonTypeError(value: json) }
+      try Self.jsonPath.forEach {
+         guard let value = dictionary[$0] as? [String : Any] else { throw Self.jsonTypeError(value: json) }
+         dictionary = value
+      }
       self.init()
       try update(with: dictionary)
    }
