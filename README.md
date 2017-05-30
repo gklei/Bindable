@@ -1,6 +1,6 @@
 # Bindable
 
-[![CI Status](http://img.shields.io/travis/openfryer/Bindable.svg?style=flat)](https://travis-ci.org/openfryer/Bindable)
+[![CI Status](http://img.shields.io/travis/Incipia/Bindable.svg?style=flat)](https://travis-ci.org/Incipia/Bindable)
 [![Version](https://img.shields.io/cocoapods/v/Bindable.svg?style=flat)](http://cocoapods.org/pods/Bindable)
 [![License](https://img.shields.io/cocoapods/l/Bindable.svg?style=flat)](http://cocoapods.org/pods/Bindable)
 [![Platform](https://img.shields.io/cocoapods/p/Bindable.svg?style=flat)](http://cocoapods.org/pods/Bindable)
