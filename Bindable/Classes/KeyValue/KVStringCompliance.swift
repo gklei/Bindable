@@ -25,11 +25,16 @@ public extension IncKVStringCompliance {
    }
    
    // MARK: - Type Casting
-   func castValue<T>(for key: String) -> T? {
+   func cast<T>(key: String) -> T? {
       return value(for: key) as? T
    }
-   func castValue<T>(for key: String, default defaultValue: T) -> T {
+   
+   func cast<T>(key: String, default defaultValue: T) -> T {
       return value(for: key) as? T ?? defaultValue
+   }
+   
+   func forceCast<T>(key: String) -> T {
+      return value(for: key) as! T
    }
 }
 
