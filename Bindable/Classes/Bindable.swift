@@ -12,7 +12,7 @@ public enum BindableError: Error {
    case invalidKey(name: String)
 }
 
-public protocol Bindable: IncKVCompliance, StringBindable {
+public protocol Bindable: IncKVComplianceClass, StringBindable {
    static var bindableKeys: [Key] { get }
 
    var bindingBlocks: [Key : [((targetObject: AnyObject, rawTargetKey: String)?, Any?) throws -> Bool?]] { get set }

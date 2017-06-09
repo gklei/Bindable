@@ -58,5 +58,14 @@ public extension IncKVKeyType {
 }
 
 public protocol IncKVStringComplianceClass: class, IncKVStringCompliance {
+   // MARK: - Mutating
    func set(value: Any?, for key: String) throws
+}
+
+public extension IncKVStringComplianceClass {
+   // MARK: - Mutating
+   subscript(key: String) -> Any? {
+      get { return value(for: key) }
+      set { try! set(value: newValue, for: key) }
+   }
 }
