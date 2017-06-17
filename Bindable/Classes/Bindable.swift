@@ -23,7 +23,7 @@ public protocol Bindable: IncKVComplianceClass, StringBindable {
    func unbind<T: Bindable>(key: Key, to target: T, key targetKey: T.Key)
    func unbindOneWay<T: Bindable>(key: Key, to target: T, key targetKey: T.Key)
    func setBoundValue(_ value: Any?, for key: Key) throws
-   func setOwn(value: Any?, for key: Key) throws
+   func setOwn(value: inout Any?, for key: Key) throws
    func handleBindingError(_ error: Error, value: Any?, key: Key)
 }
 
@@ -67,15 +67,24 @@ public extension Bindable {
    }
    
    func setBoundValue(_ value: Any?, for key: Key) throws {
-      guard !keysBeingSet.contains(key) else { return }
-      keysBeingSet.append(key)
+      guard Self.bindableKeys.contains(key) else { return }
+      guard shouldSet(value: value, for: key) else { return }
+      startedSetting(bindableKey: key)
       defer { finishedSetting(bindableKey: key) }
-      guard let bindings = bindingBlocks[key] else { return }
-      try bindings.forEach { let _ = try $0(nil, value) }
+      try propagate(value: value, for: key)
    }
    
-   func shouldSet(bindableKey: Key) -> Bool {
+   func shouldSet(value: Any?, for bindableKey: Key) -> Bool {
       return !keysBeingSet.contains(bindableKey)
+   }
+   
+   func startedSetting(bindableKey: Key) {
+      keysBeingSet.append(bindableKey)
+   }
+   
+   func propagate(value: Any?, for bindableKey: Key) throws {
+      guard let bindings = bindingBlocks[bindableKey] else { return }
+      try bindings.forEach { let _ = try $0(nil, value) }
    }
    
    func finishedSetting(bindableKey: Key) {
@@ -89,10 +98,13 @@ public extension Bindable {
    }
    
    func setAsBindable(value: Any?, for key: Key) throws {
-      guard Self.bindableKeys.contains(key) else { try setOwn(value: value, for: key); return }
-      guard shouldSet(bindableKey: key) else { return }
-      try setOwn(value: value, for: key)
-      try setBoundValue(value, for: key)
+      var value = value
+      guard Self.bindableKeys.contains(key) else { try setOwn(value: &value, for: key); return }
+      guard shouldSet(value: value, for: key) else { return }
+      startedSetting(bindableKey: key)
+      defer { finishedSetting(bindableKey: key) }
+      try setOwn(value: &value, for: key)
+      try propagate(value: value, for: key)
    }
    
    public func trySetBoundValue(_ value: Any?, for key: Key) {
