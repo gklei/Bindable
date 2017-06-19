@@ -30,7 +30,7 @@ class BindableEvent: KVEvent, Bindable {
       try setAsBindable(value: value, for: key)
    }
    
-   func setOwn(value: Any?, for key: KVEventKey) throws {
+   func setOwn(value: inout Any?, for key: KVEventKey) throws {
       try super.set(value: value, for: key)
    }
 }
