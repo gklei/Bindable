@@ -119,6 +119,7 @@ public extension Bindable {
 public typealias BindingModel = [Binding]
 
 public extension Array where Element: BindingType {
+   // MARK: - Public
    func filter<Key: IncKVKeyType>(key: Key) -> [Binding] {
       let keyString: String = key.rawValue
       return flatMap {
@@ -126,17 +127,27 @@ public extension Array where Element: BindingType {
          return $0 as? Binding
       }
    }
+   
    func map<FirstKey: IncKVKeyType, SecondKey: IncKVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> [Binding] {
       return map {
          guard $0.key == first.rawValue else { return $0 as! Binding }
          return Binding(key: second.rawValue, target: $0.target, targetKey: $0.targetKey)
       }
    }
+   
    func flatMap<FirstKey: IncKVKeyType, SecondKey: IncKVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> [Binding] {
       return flatMap {
          guard $0.key == first.rawValue else { return nil }
          return Binding(key: second.rawValue, target: $0.target, targetKey: $0.targetKey)
       }
+   }
+
+   func targetValue<Key: IncKVKeyType>(for key: Key) -> Any? {
+      return filter(key: key).first?.targetValue
+   }
+   
+   public func set<Key: IncKVKeyType>(targetValue: Any?, for key: Key) throws {
+      try filter(key: key).forEach { try $0.set(targetValue: targetValue) }
    }
 }
 
