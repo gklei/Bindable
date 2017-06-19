@@ -38,6 +38,14 @@ public enum IncKVError: Error {
    case valueType(key: String, value: String)
 }
 
+public struct IncEmptyKey: IncKVKeyType {
+   public var rawValue: String { return "" }
+   public init?(rawValue: String) { return nil }
+   public static var all: [IncEmptyKey] { return [] }
+   public var hashValue: Int { return 0 }
+   public static func == (lhs: IncEmptyKey, rhs: IncEmptyKey) -> Bool { return false }
+}
+
 public protocol IncKVCompliance: IncKVStringCompliance {
    associatedtype Key: IncKVKeyType
    
