@@ -9,7 +9,7 @@
 import Foundation
 import Bindable
 
-class JSONEvent: KVEvent, IncKVJSONInitable, IncKVJSONRepresentable {}
+class JSONEvent: KVEvent, IncKVJSONInitableRepresentableClass {}
 
 extension KVEventCategory: IncJSONInitable, IncJSONRepresentable {
    init?(json: Any) throws {
