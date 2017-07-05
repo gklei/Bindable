@@ -97,3 +97,15 @@ public extension IncKVJSONInitableClass {
       }
    }
 }
+
+public protocol IncKVJSONInitableRepresentable: IncKVJSONInitable, IncKVJSONRepresentable {}
+
+public extension IncKVJSONInitableRepresentable {
+   static var jsonKeys: [Key] { return Key.all }
+}
+
+public protocol IncKVJSONInitableRepresentableClass: IncKVJSONInitableClass, IncKVJSONRepresentable {}
+
+public extension IncKVJSONInitableRepresentableClass {
+   static var jsonKeys: [Key] { return Key.all }
+}

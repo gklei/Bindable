@@ -17,6 +17,8 @@ public protocol IncKVJSONRepresentable: IncJSONRepresentable, IncKVCompliance {
 }
 
 public extension IncKVJSONRepresentable {
+   static var jsonKeys: [Key] { return Key.all }
+   
    var jsonRepresentation: Any? {
       var json: [String : Any] = [:]
       Self.jsonKeys.forEach {
