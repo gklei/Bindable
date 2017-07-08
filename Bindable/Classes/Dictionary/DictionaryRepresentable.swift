@@ -12,11 +12,11 @@ public protocol IncDictionaryRepresentable {
    var dictionaryRepresentation: [String : Any]? { get }
 }
 
-public protocol IncKVDictionaryRepresentable: IncJSONRepresentable, IncKVCompliance {
+public protocol IncKVDictionaryRepresentable: IncDictionaryRepresentable, IncKVCompliance {
    static var dictionaryKeys: [Key] { get }
 }
 
-public extension IncKVJSONRepresentable {
+public extension IncKVDictionaryRepresentable {
    static var dictionaryKeys: [Key] { return Key.all }
 
    var dictionaryRepresentation: [String : Any]? {
