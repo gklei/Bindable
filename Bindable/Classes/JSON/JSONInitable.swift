@@ -26,11 +26,16 @@ public extension IncJSONInitable {
 
 public protocol IncJSONFactory {
    func value(json: Any) throws -> Any?
+   func json(value: Any) -> Any?
 }
 
 public extension IncJSONFactory {
    func value(json: Any) throws -> Any? {
       return json
+   }
+   
+   func json(value: Any) -> Any? {
+      return value
    }
    
    // MARK: - Error creation
