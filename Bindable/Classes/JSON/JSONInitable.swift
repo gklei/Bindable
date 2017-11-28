@@ -63,7 +63,7 @@ public extension IncKVJSONInitable {
    init?(json: Any) throws {
       guard var dictionary = json as? [String : Any] else { throw Self.jsonTypeError(value: json) }
       try Self.jsonPath.forEach {
-         guard let value = dictionary[$0] as? [String : Any] else { throw Self.jsonTypeError(value: json) }
+         guard let value = dictionary[$0] as? [String : Any] else { throw Self.jsonValueError(value: json) }
          dictionary = value
       }
       self.init()
