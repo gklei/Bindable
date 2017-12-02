@@ -61,17 +61,17 @@ public extension IncKVJSONInitable {
    static func kvJSONUnderlyingError(key: Key, error: Error) -> IncKVJSONError { return .underlyingError(selfType: "\(Self.self)", key: key.rawValue, error: error) }
    
    init?(json: Any) throws {
-      guard var dictionary = json as? [String : Any] else { throw Self.jsonTypeError(value: json) }
-      try Self.jsonPath.forEach {
-         guard let value = dictionary[$0] as? [String : Any] else { throw Self.jsonValueError(value: json) }
+      self.init()
+      guard var dictionary = json as? [String : Any] else { throw type(of: self).jsonTypeError(value: json) }
+      try type(of: self).jsonPath.forEach {
+         guard let value = dictionary[$0] as? [String : Any] else { throw type(of: self).jsonValueError(value: json) }
          dictionary = value
       }
-      self.init()
       try update(with: dictionary)
    }
    
    mutating func update(with dictionary: [String : Any]) throws {
-      try Self.jsonKeys.forEach {
+      try type(of: self).jsonKeys.forEach {
          var value = dictionary[$0.rawValue]
          do {
             if let someValue = value, let factory = $0 as? IncJSONFactory {
@@ -79,7 +79,7 @@ public extension IncKVJSONInitable {
             }
             try self.set(value: value, for: $0)
          } catch {
-            throw Self.kvJSONUnderlyingError(key: $0, error: error)
+            throw type(of: self).kvJSONUnderlyingError(key: $0, error: error)
          }
       }
    }
@@ -89,7 +89,7 @@ public protocol IncKVJSONInitableClass: class, IncKVJSONInitable, IncKVComplianc
 
 public extension IncKVJSONInitableClass {
    func update(with dictionary: [String : Any]) throws {
-      try Self.jsonKeys.forEach {
+      try type(of: self).jsonKeys.forEach {
          do {
             var value = dictionary[$0.rawValue]
             if let someValue = value, let factory = $0 as? IncJSONFactory {
@@ -97,7 +97,7 @@ public extension IncKVJSONInitableClass {
             }
             try self.set(value: value, for: $0)
          } catch {
-            throw Self.kvJSONUnderlyingError(key: $0, error: error)
+            throw type(of: self).kvJSONUnderlyingError(key: $0, error: error)
          }
       }
    }
