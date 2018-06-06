@@ -36,7 +36,7 @@ class KVEvent: IncKVCompliance {
    
    func value(for key: KVEventKey) -> Any? {
       switch key {
-      case .category(_): return category
+      case .category: return category
       case .type: return type
       case .venueNameOrAddress: return venueNameOrAddress
       case .venueLegalAddress: return venueLegalAddress

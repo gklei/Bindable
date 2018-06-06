@@ -54,7 +54,7 @@ public struct Binding {
 
 extension Binding: BindingType {}
 
-public protocol StringBindable: class, IncKVStringComplianceClass {
+public protocol StringBindable: IncKVStringComplianceClass {
    func bind(key: String, to target: StringBindable, key targetKey: String) throws
    func bindOneWay(key: String, to target: StringBindable, key targetKey: String) throws
    func unbind(key: String, to target: StringBindable, key targetKey: String)
@@ -122,7 +122,7 @@ public extension Array where Element: BindingType {
    // MARK: - Public
    func filter<Key: IncKVKeyType>(key: Key) -> [Binding] {
       let keyString: String = key.rawValue
-      return flatMap {
+      return compactMap {
          guard $0.key == keyString else { return nil }
          return $0 as? Binding
       }
@@ -136,7 +136,7 @@ public extension Array where Element: BindingType {
    }
    
    func flatMap<FirstKey: IncKVKeyType, SecondKey: IncKVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> [Binding] {
-      return flatMap {
+      return compactMap {
          guard $0.key == first.rawValue else { return nil }
          return Binding(key: second.rawValue, target: $0.target, targetKey: $0.targetKey)
       }
