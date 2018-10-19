@@ -61,7 +61,7 @@ public extension IncKVDictionaryInitable {
    }
 }
 
-public protocol IncKVDictionaryInitableClass: class, IncKVDictionaryInitable, IncKVComplianceClass {}
+public protocol IncKVDictionaryInitableClass: IncKVDictionaryInitable, IncKVComplianceClass {}
 
 public extension IncKVDictionaryInitableClass {
    func update(with dictionary: [String : Any]) throws {

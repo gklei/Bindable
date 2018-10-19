@@ -85,7 +85,7 @@ public extension IncKVJSONInitable {
    }
 }
 
-public protocol IncKVJSONInitableClass: class, IncKVJSONInitable, IncKVComplianceClass {}
+public protocol IncKVJSONInitableClass: IncKVJSONInitable, IncKVComplianceClass {}
 
 public extension IncKVJSONInitableClass {
    func update(with dictionary: [String : Any]) throws {

@@ -54,7 +54,7 @@ public struct Binding {
 
 extension Binding: BindingType {}
 
-public protocol StringBindable: class, IncKVStringComplianceClass {
+public protocol StringBindable: IncKVStringComplianceClass {
    func bind(key: String, to target: StringBindable, key targetKey: String) throws
    func bindOneWay(key: String, to target: StringBindable, key targetKey: String) throws
    func unbind(key: String, to target: StringBindable, key targetKey: String)
