@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IncKVKeyType: Hashable {
+public protocol IncKVKeyType: Hashable, CaseIterable {
    var rawValue: String { get }
    init?(rawValue: String)
    func kvTypeError(value: Any?) -> IncKVError
@@ -17,11 +17,7 @@ public protocol IncKVKeyType: Hashable {
 
 public extension IncKVKeyType {
    static var all: [Self] {
-      var all: [Self] = []
-      for element in IncIterateEnum(Self.self) {
-         all.append(element)
-      }
-      return all
+      return Array(Self.allCases)
    }
    
    func kvTypeError(value: Any?) -> IncKVError {
@@ -38,7 +34,7 @@ public enum IncKVError: Error {
    case valueType(key: String, value: String)
 }
 
-public struct IncEmptyKey: IncKVKeyType {
+public enum IncEmptyKey: IncKVKeyType {
    public var rawValue: String { return "" }
    public init?(rawValue: String) { return nil }
    public static var all: [IncEmptyKey] { return [] }
