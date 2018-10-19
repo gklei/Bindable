@@ -68,7 +68,7 @@ public extension Bindable {
    }
    func bind(key: String, to target: StringBindable, key targetKey: String) throws {
       let kvKey = try Key(keyString: key)
-      guard Self.bindableKeys.contains(kvKey) else { throw BindableError.invalidKey(name: kvKey.rawValue) }
+      guard type(of: self).bindableKeys.contains(kvKey) else { throw BindableError.invalidKey(name: kvKey.rawValue) }
       
       try target.bindOneWay(key: targetKey, to: self, key: key)
       
@@ -76,7 +76,7 @@ public extension Bindable {
    }
    func bindOneWay(key: String, to target: StringBindable, key targetKey: String) throws {
       let kvKey = try Key(keyString: key)
-      guard Self.bindableKeys.contains(kvKey) else { throw BindableError.invalidKey(name: kvKey.rawValue) }
+      guard type(of: self).bindableKeys.contains(kvKey) else { throw BindableError.invalidKey(name: kvKey.rawValue) }
       
       try target.set(value: value(for: key), for: targetKey)
       

@@ -31,13 +31,13 @@ public extension Bindable {
    static var bindableKeys: [Key] { return Key.all }
 
    func bind<T: Bindable>(key: Key, to target: T, key targetKey: T.Key) throws {
-      guard Self.bindableKeys.contains(key) else { throw BindableError.invalidKey(name: key.rawValue) }
+      guard type(of: self).bindableKeys.contains(key) else { throw BindableError.invalidKey(name: key.rawValue) }
       try target.bindOneWay(key: targetKey, to: self, key: key)
       _bindOneWay(key: key, to: target, key: targetKey)
    }
    
    func bindOneWay<T: Bindable>(key: Key, to target: T, key targetKey: T.Key) throws {
-      guard Self.bindableKeys.contains(key) else { throw BindableError.invalidKey(name: key.rawValue) }
+      guard type(of: self).bindableKeys.contains(key) else { throw BindableError.invalidKey(name: key.rawValue) }
       try target.set(value: value(for: key), for: targetKey)
       _bindOneWay(key: key, to: target, key: targetKey)
    }
@@ -67,7 +67,7 @@ public extension Bindable {
    }
    
    func setBoundValue(_ value: Any?, for key: Key) throws {
-      guard Self.bindableKeys.contains(key) else { return }
+      guard type(of: self).bindableKeys.contains(key) else { return }
       guard shouldSet(value: value, for: key) else { return }
       startedSetting(bindableKey: key)
       defer { finishedSetting(bindableKey: key) }
@@ -99,7 +99,7 @@ public extension Bindable {
    
    func setAsBindable(value: Any?, for key: Key) throws {
       var value = value
-      guard Self.bindableKeys.contains(key) else { try setOwn(value: &value, for: key); return }
+      guard type(of: self).bindableKeys.contains(key) else { try setOwn(value: &value, for: key); return }
       guard shouldSet(value: value, for: key) else { return }
       startedSetting(bindableKey: key)
       defer { finishedSetting(bindableKey: key) }

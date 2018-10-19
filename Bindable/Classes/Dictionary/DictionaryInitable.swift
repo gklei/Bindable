@@ -41,21 +41,21 @@ public extension IncKVDictionaryInitable {
    static func kvDictionaryUnderlyingError(key: Key, error: Error) -> IncKVDictionaryError { return .underlyingError(selfType: "\(Self.self)", key: key.rawValue, error: error) }
 
    init(dictionary: [String : Any]) throws {
+      self.init()
       var dictionary = dictionary
-      try Self.dictionaryPath.forEach {
-         guard let value = dictionary[$0] as? [String : Any] else { throw Self.dictionaryTypeError(value: dictionary) }
+      try type(of: self).dictionaryPath.forEach {
+         guard let value = dictionary[$0] as? [String : Any] else { throw type(of: self).dictionaryTypeError(value: dictionary) }
          dictionary = value
       }
-      self.init()
       try update(with: dictionary)
    }
    
    mutating func update(with dictionary: [String : Any]) throws {
-      try Self.dictionaryKeys.forEach {
+      try type(of: self).dictionaryKeys.forEach {
          do {
             try self.set(value: dictionary[$0.rawValue], for: $0)
          } catch {
-            throw Self.kvDictionaryUnderlyingError(key: $0, error: error)
+            throw type(of: self).kvDictionaryUnderlyingError(key: $0, error: error)
          }
       }
    }
@@ -65,11 +65,11 @@ public protocol IncKVDictionaryInitableClass: class, IncKVDictionaryInitable, In
 
 public extension IncKVDictionaryInitableClass {
    func update(with dictionary: [String : Any]) throws {
-      try Self.dictionaryKeys.forEach {
+      try type(of: self).dictionaryKeys.forEach {
          do {
             try self.set(value: dictionary[$0.rawValue], for: $0)
          } catch {
-            throw Self.kvDictionaryUnderlyingError(key: $0, error: error)
+            throw type(of: self).kvDictionaryUnderlyingError(key: $0, error: error)
          }
       }
    }

@@ -21,7 +21,7 @@ public extension IncKVDictionaryRepresentable {
 
    var dictionaryRepresentation: [String : Any]? {
       var dictionary: [String : Any] = [:]
-      Self.dictionaryKeys.forEach {
+      type(of: self).dictionaryKeys.forEach {
          dictionary[$0.rawValue] = self.value(for: $0)
       }
       return dictionary
@@ -29,7 +29,7 @@ public extension IncKVDictionaryRepresentable {
 
    var deepDictionaryRepresentation: [String : Any]? {
       var dictionary: [String : Any] = [:]
-      Self.dictionaryKeys.forEach {
+      type(of: self).dictionaryKeys.forEach {
          let value = self.value(for: $0)
          if let representableValue = value as? IncDictionaryRepresentable {
             dictionary[$0.rawValue] = representableValue.dictionaryRepresentation

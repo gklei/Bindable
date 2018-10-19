@@ -21,7 +21,7 @@ public extension IncKVJSONRepresentable {
    
    var jsonRepresentation: Any? {
       var json: [String : Any] = [:]
-      Self.jsonKeys.forEach {
+      type(of: self).jsonKeys.forEach {
          var value = self.value(for: $0)
          if let someValue = value, let factory = $0 as? IncJSONFactory {
             value = factory.json(value: someValue)
